@@ -8,20 +8,16 @@
 <NewTask OnClick ="@BuildTaskList"/>
 
 <div>
+
     <ui>
         @foreach (var tm in updatedTeamMemberList)
         {
             if (tm.DefaultTeamMember == true)
             {
-                <input placeholder="Team Member Name" @bind="@tm.Name" />
-                <input type="color" name="Chose Color" @bind="@tm.Color" />
-                <Input type="checkbox" name="Done" @bind="@tm.DefaultTeamMember"/>
-                <br/>
-            }
-            else
-            {
-                <div style="background: @tm.Color; display: inline-block; border: outset; ">
-                    <span>@tm.Name</span>
+                <div style="border:outset; display: inline-block; padding: 10px;">
+                <input type="text"  name="Enter Name" @bind="tm.Name" />
+                <input type="color"  name="Select Color" @bind="tm.Color" />
+                <input type="checkbox" name="Is Default" @bind="tm.DefaultTeamMember" />
                 </div>
                 <br/>
             }
@@ -32,13 +28,34 @@
 
 <div>
     <ui>
-        @foreach(var itask in updatedTaskList)
+        @foreach (var itask in updatedTaskList)
         {
-            if(itask.DefaultTask == true)
+            if (itask.DefaultTask == true)
             {
-                <input placeholder="Task Name" @bind="itask.TaskName"/>
-                <input type="color" name="Choose a Color" @bind="itask.Color"/>
-                <input type="number" name="TM Slots" @bind=""/>
+                <div style="border:outset; padding: 10px; display: inline-block">
+                <input placeholder="Task Name" @bind="itask.TaskName" />
+                <input type="color" name="Choose a Color" @bind="itask.Color" />
+                <input type="number" name="TM Slots" @bind="@itask.SlotNumber" />
+                <input type="checkbox" name="DefaultTask" @bind="@itask.DefaultTask" />
+                </div>
+                <br/>
+            }
+            else
+            {
+                <button></button>
+
+                <div style="border:outset; padding: 10px; display: inline-block; background:@itask.Color; -moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;">
+                    <span>
+                    <h2>@itask.TaskName</h2>
+                    
+                    @for (int i = 0; i < itask.SlotNumber; i++)
+                    {
+                        <TeamMemberSwitchComponent tmList="updatedTeamMemberList"/>
+                    }
+                    </span>
+                </div>
+                <br/>
+                
             }
         }
     </ui>

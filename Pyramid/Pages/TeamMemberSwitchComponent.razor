@@ -1,0 +1,34 @@
+﻿@using Pyramid.Data
+
+<div style="background: @divBackground; border: outset; display: inline-block" @onclick="@(() => SwitchTm())">
+
+    <h3>@divName</h3>
+
+</div>
+
+
+@code{
+
+    [Parameter]
+    List<TeamMember> tmList { get; set; }
+
+    public int index = 0;
+    public string divBackground = "#ffffff";
+    public string divName = "CLICK ME TO SET";
+
+    public void SwitchTm()
+    {
+        divBackground = tmList[index].Color;
+        divName = tmList[index].Name;
+
+        if(index < tmList.Count - 1)
+        {
+            index++;
+        }
+        else
+        {
+            index = 0;
+        }
+    }
+
+}

@@ -10,6 +10,7 @@ namespace Pyramid.Data
         public string Name { get; set; }
         public string Color { get; set; }
         public bool DefaultTeamMember { get; set; } = true;
+        public bool IsLocked { get; set; } = false;
         public int TeamMemberId { get; set; }
     }
 }

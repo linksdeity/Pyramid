@@ -9,9 +9,9 @@ namespace Pyramid.Data
     {
         public string TaskName { get; set; }
         public string Color { get; set; }
-        public List<TaskSlot> ContainedSlots { get; set; }
+        public List<TeamMember> AssignedTeamMembers { get; set; }
         public bool DefaultTask { get; set; } = true;
         public int TaskId { get; set; }
-        public int SlotNumber { get; set; } = 1;
+        public int SlotNumber { get; set; }
     }
 }
