@@ -1,0 +1,37 @@
+﻿@using Pyramid.Data
+
+<button @onclick="@(() => OnClick.InvokeAsync(AddTask()))">ADD TASK!</button>
+
+@code{
+
+    [Parameter]
+    public int Counter { get; set; }
+
+    [Parameter]
+    EventCallback<List<IndividualTask>> OnClick { get; set; }
+
+    [Parameter]
+    public int SlotCount { get; set; } = 0;
+
+    List<IndividualTask> updatedList = new List<IndividualTask>();
+
+    private List<IndividualTask> AddTask()
+    {
+        Counter++;
+
+        IndividualTask defaultTask = new IndividualTask
+        {
+            TaskName="",
+            Color="",
+            ContainedSlots = new List<TaskSlot>(SlotCount),
+            DefaultTask = true,
+
+        };
+
+        updatedList.Add(defaultTask);
+
+        return updatedList;
+
+    }
+
+}

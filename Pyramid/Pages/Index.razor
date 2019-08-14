@@ -1,0 +1,63 @@
+﻿@page "/"
+@using Pyramid.Data
+
+<h1>POWERED BY BLAZOR</h1>
+
+<NewTeamMember OnClick="@BuildTmList"/>
+
+<NewTask OnClick ="@BuildTaskList"/>
+
+<div>
+    <ui>
+        @foreach (var tm in updatedTeamMemberList)
+        {
+            if (tm.DefaultTeamMember == true)
+            {
+                <input placeholder="Team Member Name" @bind="@tm.Name" />
+                <input type="color" name="Chose Color" @bind="@tm.Color" />
+                <Input type="checkbox" name="Done" @bind="@tm.DefaultTeamMember"/>
+                <br/>
+            }
+            else
+            {
+                <div style="background: @tm.Color; display: inline-block; border: outset; ">
+                    <span>@tm.Name</span>
+                </div>
+                <br/>
+            }
+        }
+    </ui>
+</div>
+
+
+<div>
+    <ui>
+        @foreach(var itask in updatedTaskList)
+        {
+            if(itask.DefaultTask == true)
+            {
+                <input placeholder="Task Name" @bind="itask.TaskName"/>
+                <input type="color" name="Choose a Color" @bind="itask.Color"/>
+                <input type="number" name="TM Slots" @bind=""/>
+            }
+        }
+    </ui>
+</div>
+
+
+@code{
+
+    List<TeamMember> updatedTeamMemberList = new List<TeamMember>();
+    List<IndividualTask> updatedTaskList = new List<IndividualTask>();
+
+    public void BuildTmList(List<TeamMember> passedTms)
+    {
+        updatedTeamMemberList = passedTms;
+    }
+
+    public void BuildTaskList(List<IndividualTask> passedTasks)
+    {
+        updatedTaskList = passedTasks;
+    }
+
+}

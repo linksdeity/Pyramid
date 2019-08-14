@@ -1,0 +1,34 @@
+﻿@using Pyramid.Data
+
+<button @onclick="@(() => OnClick.InvokeAsync(AddTeamMember()))">ADD TEAM MEMBER!</button>
+
+@code{
+    [Parameter]
+    public int Counter { get; set; }
+
+    [Parameter]
+    EventCallback<List<TeamMember>> OnClick { get; set; }
+
+    List<TeamMember> updatedList = new List<TeamMember>();
+
+    private List<TeamMember> AddTeamMember()
+    {
+        Counter++;
+
+
+
+        TeamMember defaultTeamMember = new TeamMember
+        {
+            Name = "",
+            Color = "",
+            TeamMemberId = Counter,
+            DefaultTeamMember = true
+        };
+
+        updatedList.Add(defaultTeamMember);
+
+        return updatedList;
+
+    }
+
+}
